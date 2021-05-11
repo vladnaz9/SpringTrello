@@ -13,13 +13,5 @@ public interface DeskService {
 
     void delete(Long id);
 
-//TODO работа с участниками
-    /*
 
-    UserDTO saveParticipant(Long userId, Long boardId);
-
-    void deleteParticipant(Long workspaceId, Long userId);
-
-    List<UserDTO> getAllParticipants();
-     */
 }
