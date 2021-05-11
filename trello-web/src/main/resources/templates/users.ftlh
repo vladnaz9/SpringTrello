@@ -14,7 +14,7 @@
             <th>id</th>
             <th>email</th>
         </tr>
-        <#list usersList as user>
+        <#list userList as user>
         <tr>
             <td>${user.id}</td>
             <td>${user.email}</td>

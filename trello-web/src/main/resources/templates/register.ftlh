@@ -23,9 +23,6 @@
 
     <div class="right">
         <span class="loginwith">Sign in with<br />social network</span>
-
-<#--        <button class="social-signin facebook">Reg with facebook</button>-->
-<#--        <button class="social-signin twitter">Reg with Twitter</button>-->
         <button class="social-signin google">Reg with Google+</button>
 
         <div class="container signin">
