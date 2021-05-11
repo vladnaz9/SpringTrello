@@ -1,6 +1,11 @@
 package org.example.trello.web.controller.rest;
 
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.example.trello.api.dto.UserFormDto;
 import org.example.trello.api.service.UserService;
 import org.example.trello.web.security.config.jwt.provider.JwtTokenProvider;
@@ -30,6 +35,16 @@ public class RestSignInController {
         this.userService = userService;
     }
 
+
+    @Operation(summary = "Get authenticate")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "all good",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = UserFormDto.class)) }),
+            @ApiResponse(responseCode = "500", description = "Invalid email ",
+                    content = @Content),
+            @ApiResponse(responseCode = "404", description = "u have some problem",
+                    content = @Content) })
     @PostMapping("/restApi/SignIn")
     public ResponseEntity login(@RequestBody UserFormDto formDto) {
         try {
