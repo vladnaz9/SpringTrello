@@ -9,6 +9,6 @@
 </head>
 <body>
 PROFILE
-${user.username}
+${user.userName}
 </body>
 </html>

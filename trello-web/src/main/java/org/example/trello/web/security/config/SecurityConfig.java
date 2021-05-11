@@ -43,12 +43,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/signUp").permitAll()
                 .antMatchers("/profile").authenticated()
                 .antMatchers("/users").hasAuthority("ADMIN")
-                .antMatchers("/", "/signIn","/oauth/**").permitAll();
-        http.formLogin()
+                .antMatchers("/", "/signIn","/oauth/**").permitAll()
+                .antMatchers("/oauth2").permitAll()
+                .and()
+                .formLogin()
                 .loginPage("/signIn")
                 .usernameParameter("email")
                 .defaultSuccessUrl("/profile")
-                .failureUrl("/sigIn?error")
+                .failureUrl("/signIn?error")
                 .and()
                 .oauth2Login().loginPage("/signIn").userInfoEndpoint().userService(oAuth2UserService)
                 .and()
@@ -57,13 +59,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
                         CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
                         signUpService.registerOauth2(oAuth2User.getEmail(), oAuth2User.getName());
-                        httpServletResponse.sendRedirect("profile");
+                        httpServletResponse.sendRedirect("/profile");
                     }
                 })
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
-
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");
     }

@@ -1,9 +1,10 @@
+<#import "/spring.ftl" as spring/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
-    <link type="text/css" rel="stylesheet" href="css/registerStyle.css">
+    <link rel="stylesheet" href="<@spring.url '/css/registerStyle.css'/>"/>
 </head>
 <body>
 <form action="/signUp" method="post">
@@ -23,12 +24,12 @@
     <div class="right">
         <span class="loginwith">Sign in with<br />social network</span>
 
-        <button class="social-signin facebook">Reg with facebook</button>
-        <button class="social-signin twitter">Reg with Twitter</button>
+<#--        <button class="social-signin facebook">Reg with facebook</button>-->
+<#--        <button class="social-signin twitter">Reg with Twitter</button>-->
         <button class="social-signin google">Reg with Google+</button>
 
         <div class="container signin">
-            <p>Already have an account? <a href="#">Log in</a>.</p>
+            <p>Already have an account? <a href="/signUp">Log in</a>.</p>
         </div>
     </div>
     <div class="or">OR</div>

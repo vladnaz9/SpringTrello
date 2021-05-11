@@ -37,14 +37,14 @@ public class RestSignInController {
     @PostMapping("/restApi/SignIn")
     public ResponseEntity login(@RequestBody UserFormDto formDto) {
         try {
-            String email = formDto.getUsername();
+            String email = formDto.getEmail();
 
 
             if (userService.signIn(formDto)) {
                 String token = jwtTokenProvider.createToken(email);
 
                 Map<Object, Object> response = new HashMap<>();
-                response.put("username", email);
+                response.put("email", email);
                 response.put("token", token);
 
                 return ResponseEntity.ok(response);
